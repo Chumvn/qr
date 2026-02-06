@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VietQR - Tạo mã QR chuyển khoản</title>
-    <meta name="description" content="Tạo mã QR chuyển khoản ngân hàng theo chuẩn VietQR">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,219 +12,104 @@
 </head>
 
 <body>
-    <div class="background-decoration">
-        <div class="circle circle-1"></div>
-        <div class="circle circle-2"></div>
-        <div class="circle circle-3"></div>
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
     </div>
 
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <img src="https://vietqr.net/img/logo_vietqr.f9cab4e8.png" alt="VietQR Logo" class="logo-img">
-            </div>
-            <nav class="nav">
-                <a href="#" class="nav-link active">Tạo mã QR</a>
-                <a href="#" class="nav-link">Hướng dẫn</a>
-                <a href="#" class="nav-link">API</a>
-            </nav>
-        </div>
-    </header>
+    <div class="container">
+        <header class="header">
+            <h1 class="logo">VietQR</h1>
+            <p class="tagline">Tạo mã QR chuyển khoản nhanh chóng</p>
+        </header>
 
-    <main class="main">
-        <div class="container">
-            <div class="hero">
-                <h1 class="hero-title">Tạo mã VietQR</h1>
-                <p class="hero-subtitle">Chuyển khoản nhanh chóng với mã QR chuẩn NAPAS</p>
-            </div>
-
-            <div class="card-container">
-                <!-- Form Card -->
-                <div class="card form-card">
-                    <div class="card-header">
-                        <h2 class="card-title">Thông tin chuyển khoản</h2>
-                    </div>
-
-                    <form id="qrForm" class="form">
-                        <!-- Bank Selection -->
-                        <div class="form-group">
-                            <label class="form-label">Chọn ngân hàng <span class="required">*</span></label>
-                            <div class="bank-select-wrapper">
-                                <div class="bank-select" id="bankSelect">
-                                    <div class="bank-select-display">
-                                        <span class="placeholder">-- Chọn ngân hàng --</span>
-                                    </div>
-                                    <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg>
-                                </div>
-                                <div class="bank-dropdown" id="bankDropdown">
-                                    <div class="bank-search">
-                                        <input type="text" placeholder="Tìm ngân hàng..." id="bankSearchInput">
-                                    </div>
-                                    <div class="bank-list" id="bankList">
-                                        <!-- Banks will be populated here -->
-                                    </div>
-                                </div>
-                            </div>
-                            <input type="hidden" id="bankCode" name="bankCode" required>
-                        </div>
-
-                        <!-- Account Number -->
-                        <div class="form-group">
-                            <label class="form-label" for="accountNo">Số tài khoản <span
-                                    class="required">*</span></label>
-                            <input type="text" id="accountNo" name="accountNo" class="form-input"
-                                placeholder="Nhập số tài khoản" required>
-                        </div>
-
-                        <!-- Account Name -->
-                        <div class="form-group">
-                            <label class="form-label" for="accountName">Tên chủ tài khoản</label>
-                            <input type="text" id="accountName" name="accountName" class="form-input"
-                                placeholder="Nhập tên chủ tài khoản" style="text-transform: uppercase;">
-                        </div>
-
-                        <!-- Amount -->
-                        <div class="form-group">
-                            <label class="form-label" for="amount">Số tiền (VND)</label>
-                            <input type="text" id="amount" name="amount" class="form-input" placeholder="Nhập số tiền">
-                        </div>
-
-                        <!-- Description -->
-                        <div class="form-group">
-                            <label class="form-label" for="description">Nội dung chuyển khoản</label>
-                            <input type="text" id="description" name="description" class="form-input"
-                                placeholder="Nội dung chuyển khoản" maxlength="50">
-                            <span class="form-hint">Tối đa 50 ký tự, không dấu</span>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary" id="generateBtn">
-                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <rect x="3" y="3" width="7" height="7"></rect>
-                                <rect x="14" y="3" width="7" height="7"></rect>
-                                <rect x="14" y="14" width="7" height="7"></rect>
-                                <rect x="3" y="14" width="7" height="7"></rect>
-                            </svg>
-                            Tạo mã QR
-                        </button>
-                    </form>
-                </div>
-
-                <!-- QR Card -->
-                <div class="card qr-card">
-                    <div class="card-header">
-                        <h2 class="card-title">Mã QR</h2>
-                    </div>
-
-                    <div class="qr-container">
-                        <div class="qr-placeholder" id="qrPlaceholder">
-                            <svg class="qr-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5">
-                                <rect x="3" y="3" width="7" height="7"></rect>
-                                <rect x="14" y="3" width="7" height="7"></rect>
-                                <rect x="14" y="14" width="7" height="7"></rect>
-                                <rect x="3" y="14" width="7" height="7"></rect>
-                            </svg>
-                            <p>Nhập thông tin để tạo mã QR</p>
-                        </div>
-
-                        <div class="qr-result" id="qrResult" style="display: none;">
-                            <div class="qr-frame">
-                                <div class="qr-bank-logo" id="qrBankLogo"></div>
-                                <div class="qr-code-wrapper">
-                                    <canvas id="qrCanvas"></canvas>
-                                </div>
-                                <div class="qr-napas-logo">
-                                    <img src="https://img.vietqr.io/image/napas-logo.png" alt="NAPAS">
-                                </div>
-                                <div class="qr-account-info" id="qrAccountInfo"></div>
-                            </div>
-
-                            <div class="qr-actions">
-                                <button class="btn btn-secondary" id="downloadBtn">
-                                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                        <polyline points="7 10 12 15 17 10"></polyline>
-                                        <line x1="12" y1="15" x2="12" y2="3"></line>
-                                    </svg>
-                                    Tải về
-                                </button>
-                                <button class="btn btn-outline" id="copyBtn">
-                                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                    </svg>
-                                    Sao chép
-                                </button>
-                            </div>
-                        </div>
+        <main class="glass-card">
+            <form id="qrForm">
+                <!-- Bank Selection -->
+                <div class="form-group">
+                    <label>Ngân hàng <span class="required">*</span></label>
+                    <div class="select-wrapper">
+                        <select id="bankSelect" required>
+                            <option value="">-- Chọn ngân hàng --</option>
+                        </select>
                     </div>
                 </div>
-            </div>
 
-            <!-- Features -->
-            <div class="features">
-                <div class="feature">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <!-- Account Number -->
+                <div class="form-group">
+                    <label>Số tài khoản <span class="required">*</span></label>
+                    <input type="text" id="accountNo" placeholder="Nhập số tài khoản" required>
+                </div>
+
+                <!-- Account Name -->
+                <div class="form-group">
+                    <label>Tên chủ tài khoản</label>
+                    <input type="text" id="accountName" placeholder="Nhập tên chủ TK" style="text-transform:uppercase">
+                </div>
+
+                <!-- Amount -->
+                <div class="form-group">
+                    <label>Số tiền (VND)</label>
+                    <input type="text" id="amount" placeholder="Nhập số tiền">
+                </div>
+
+                <!-- Description -->
+                <div class="form-group">
+                    <label>Nội dung</label>
+                    <input type="text" id="description" placeholder="Nội dung chuyển khoản" maxlength="50">
+                </div>
+
+                <button type="submit" class="btn-generate">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    Tạo mã QR
+                </button>
+            </form>
+
+            <!-- QR Result -->
+            <div id="qrResult" class="qr-result" style="display:none">
+                <div class="qr-frame">
+                    <img id="bankLogo" class="bank-logo" src="" alt="">
+                    <div id="qrCode" class="qr-code"></div>
+                    <div class="napas-badge">
+                        <span>Powered by</span>
+                        <strong>NAPAS</strong>
+                    </div>
+                    <div id="accountInfo" class="account-info"></div>
+                </div>
+                <div class="qr-actions">
+                    <button type="button" id="downloadBtn" class="btn-action">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
                         </svg>
-                    </div>
-                    <h3>An toàn</h3>
-                    <p>Chuẩn bảo mật VietQR</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
+                        Tải về
+                    </button>
+                    <button type="button" id="newBtn" class="btn-action btn-outline">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
-                    </div>
-                    <h3>Nhanh chóng</h3>
-                    <p>Tạo QR trong giây lát</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                            <line x1="1" y1="10" x2="23" y2="10"></line>
-                        </svg>
-                    </div>
-                    <h3>Đa ngân hàng</h3>
-                    <p>Hỗ trợ 40+ ngân hàng</p>
+                        Tạo mới
+                    </button>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
 
-    <footer class="footer">
-        <p>© 2026 VietQR Clone - Demo purposes only</p>
-        <p>Powered by NAPAS & VietQR Standard</p>
-    </footer>
+        <footer class="footer">
+            <p>© 2026 VietQR Clone</p>
+        </footer>
+    </div>
 
-    <!-- QRCode library with fallbacks -->
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
-    <script>
-        // Fallback if CDN fails
-        if (typeof QRCode === 'undefined') {
-            document.write('<script src="https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js"><\/script>');
-        }
-    </script>
-    <script>
-        // Check if QRCode loaded
-        window.addEventListener('load', function () {
-            if (typeof QRCode === 'undefined') {
-                alert('Lỗi: Không thể tải thư viện QR. Vui lòng kiểm tra kết nối mạng và refresh trang.');
-            } else {
-                console.log('QRCode library loaded successfully');
-            }
-        });
-    </script>
     <script src="app.js"></script>
 </body>
 
