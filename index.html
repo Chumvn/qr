@@ -23,17 +23,8 @@
             <form id="qrForm">
                 <div class="form-group">
                     <label>Ngân hàng <span class="required">*</span></label>
-                    <div class="input-wrapper">
-                        <select id="bankSelect" required>
-                            <option value="">-- Chọn ngân hàng --</option>
-                        </select>
-                    </div>
-                    <div class="suggestions" id="bankSuggestions">
-                        <span class="chip" data-bank="VCB">Vietcombank</span>
-                        <span class="chip" data-bank="TCB">Techcombank</span>
-                        <span class="chip" data-bank="MB">MBBank</span>
-                        <span class="chip" data-bank="ACB">ACB</span>
-                        <span class="chip" data-bank="TPB">TPBank</span>
+                    <div id="bankGrid" class="bank-grid">
+                        <!-- Banks will be populated by JS -->
                     </div>
                 </div>
 

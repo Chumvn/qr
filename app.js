@@ -27,7 +27,7 @@ const BANKS = [
 ];
 
 // DOM Elements
-const bankSelect = document.getElementById('bankSelect');
+const bankGrid = document.getElementById('bankGrid');
 const qrForm = document.getElementById('qrForm');
 const qrResult = document.getElementById('qrResult');
 const qrCodeDiv = document.getElementById('qrCode');
@@ -42,29 +42,17 @@ let currentQRUrl = null;
 document.addEventListener('DOMContentLoaded', init);
 
 function init() {
-    // Populate bank select
+    // Populate bank grid
     BANKS.forEach(bank => {
-        const option = document.createElement('option');
-        option.value = bank.code;
-        option.textContent = bank.name;
-        option.dataset.logo = bank.logo;
-        option.dataset.bin = bank.bin;
-        bankSelect.appendChild(option);
-    });
-
-    // Event listeners
-    bankSelect.addEventListener('change', (e) => {
-        const opt = e.target.selectedOptions[0];
-        if (opt && opt.value) {
-            currentBank = {
-                code: opt.value,
-                name: opt.textContent,
-                logo: opt.dataset.logo,
-                bin: opt.dataset.bin
-            };
-        } else {
-            currentBank = null;
-        }
+        const btn = document.createElement('div');
+        btn.className = 'bank-btn';
+        btn.dataset.code = bank.code;
+        btn.innerHTML = `
+            <img src="${bank.logo}" alt="${bank.name}" onerror="this.style.display='none'">
+            <span>${bank.code}</span>
+        `;
+        btn.addEventListener('click', () => selectBank(bank, btn));
+        bankGrid.appendChild(btn);
     });
 
     qrForm.addEventListener('submit', generateQR);
@@ -75,19 +63,6 @@ function init() {
     document.getElementById('amount').addEventListener('input', (e) => {
         let val = e.target.value.replace(/\D/g, '');
         if (val) e.target.value = Number(val).toLocaleString('vi-VN');
-    });
-
-    // Bank suggestion chips
-    document.querySelectorAll('#bankSuggestions .chip').forEach(chip => {
-        chip.addEventListener('click', () => {
-            const bankCode = chip.dataset.bank;
-            bankSelect.value = bankCode;
-            bankSelect.dispatchEvent(new Event('change'));
-
-            // Update selected state
-            document.querySelectorAll('#bankSuggestions .chip').forEach(c => c.classList.remove('selected'));
-            chip.classList.add('selected');
-        });
     });
 
     // Description suggestion chips
@@ -103,6 +78,15 @@ function init() {
     });
 
     console.log('CHUM QR ready!');
+}
+
+// Select bank function
+function selectBank(bank, btn) {
+    currentBank = bank;
+
+    // Update UI
+    document.querySelectorAll('.bank-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
 }
 
 // Generate QR using VietQR.io API (free, no CORS issues with images)
