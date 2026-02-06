@@ -73,14 +73,31 @@
             <!-- QR Result -->
             <div id="qrResult" class="qr-result" style="display:none">
                 <div class="qr-frame">
-                    <div class="qr-frame-header">
-                        <img id="bankLogo" class="bank-logo" src="" alt="">
-                        <span class="napas-text">NAPAS</span>
+                    <!-- Header: Account Info -->
+                    <div class="qr-header">
+                        <div class="qr-header-info">
+                            <span id="qrAccountName" class="qr-name"></span>
+                            <span id="qrAccountNo" class="qr-stk"></span>
+                        </div>
+                        <span id="qrBankCode" class="qr-bank-code"></span>
                     </div>
-                    <div id="qrCode" class="qr-code"></div>
-                    <div class="qr-frame-footer">
-                        <div id="accountInfo" class="account-info"></div>
-                        <div class="chumqr-badge">CHUM QR</div>
+
+                    <!-- Body: Logo + QR -->
+                    <div class="qr-body">
+                        <div class="qr-logo">
+                            <span class="logo-v">V</span>
+                            <span class="logo-text">ietQR</span>
+                        </div>
+                        <div id="qrCode" class="qr-code"></div>
+                    </div>
+
+                    <!-- Footer: NAPAS + CHUM QR -->
+                    <div class="qr-footer">
+                        <div class="napas-logo">
+                            <span class="napas-name">napas</span>
+                            <span class="napas-247">247</span>
+                        </div>
+                        <div class="chumqr-logo">CHUM QR</div>
                     </div>
                 </div>
                 <div class="qr-actions">

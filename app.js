@@ -31,8 +31,6 @@ const bankSelect = document.getElementById('bankSelect');
 const qrForm = document.getElementById('qrForm');
 const qrResult = document.getElementById('qrResult');
 const qrCodeDiv = document.getElementById('qrCode');
-const bankLogo = document.getElementById('bankLogo');
-const accountInfo = document.getElementById('accountInfo');
 const downloadBtn = document.getElementById('downloadBtn');
 const newBtn = document.getElementById('newBtn');
 
@@ -126,19 +124,13 @@ function generateQR(e) {
     img.crossOrigin = 'anonymous';
     img.onload = () => {
         qrCodeDiv.innerHTML = '';
-        img.style.maxWidth = '200px';
-        img.style.borderRadius = '8px';
+        img.style.maxWidth = '160px';
         qrCodeDiv.appendChild(img);
 
-        // Show bank logo in header
-        bankLogo.src = currentBank.logo;
-        bankLogo.alt = currentBank.name;
-        bankLogo.style.display = 'block';
-
-        accountInfo.innerHTML = `
-            <div class="acc-number">${accountNo}</div>
-            ${accountName ? `<div class="acc-name">${accountName}</div>` : ''}
-        `;
+        // Populate header info
+        document.getElementById('qrAccountName').textContent = accountName || 'CHỦ TÀI KHOẢN';
+        document.getElementById('qrAccountNo').textContent = accountNo;
+        document.getElementById('qrBankCode').textContent = currentBank.code;
 
         showToast('Tạo mã QR thành công!');
     };
