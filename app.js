@@ -130,9 +130,10 @@ function generateQR(e) {
         img.style.borderRadius = '8px';
         qrCodeDiv.appendChild(img);
 
+        // Show bank logo in header
         bankLogo.src = currentBank.logo;
         bankLogo.alt = currentBank.name;
-        bankLogo.style.display = 'none'; // VietQR API already includes logo
+        bankLogo.style.display = 'block';
 
         accountInfo.innerHTML = `
             <div class="acc-number">${accountNo}</div>
