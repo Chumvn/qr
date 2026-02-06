@@ -210,124 +210,17 @@ body {
     }
 }
 
-/* QR Frame - VietQR Style */
-.qr-frame {
-    background: #ffffff;
-    border: 4px solid #22c55e;
-    border-radius: 12px;
-    overflow: hidden;
-    min-width: 280px;
-    box-shadow: 8px 8px 0px var(--black);
-}
-
-/* Header - Blue gradient */
-.qr-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 14px;
-    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-    color: white;
-}
-
-.qr-header-info {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.qr-name {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.qr-stk {
-    font-size: 13px;
-    font-weight: 700;
-}
-
-.qr-bank-code {
-    font-size: 14px;
-    font-weight: 800;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 4px 10px;
-    border-radius: 4px;
-}
-
-/* Body - Logo + QR */
-.qr-body {
-    background: white;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-}
-
-.qr-logo {
-    display: flex;
-    align-items: baseline;
-    font-size: 28px;
-    font-weight: 800;
-}
-
-.logo-v {
-    background: linear-gradient(180deg, #ef4444 0%, #f97316 50%, #22c55e 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.logo-text {
-    color: #1d4ed8;
-}
-
+/* QR Code Display - Simple */
 .qr-code {
-    padding: 8px;
-    background: white;
+    display: flex;
+    justify-content: center;
 }
 
 .qr-code img {
-    max-width: 160px;
+    max-width: 280px;
     height: auto;
-}
-
-/* Footer - NAPAS + CHUM QR */
-.qr-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 14px;
-    background: #f8fafc;
-    border-top: 1px solid #e2e8f0;
-}
-
-.napas-logo {
-    display: flex;
-    align-items: baseline;
-    gap: 4px;
-}
-
-.napas-name {
-    font-size: 14px;
-    font-weight: 700;
-    color: #1d4ed8;
-    font-style: italic;
-}
-
-.napas-247 {
-    font-size: 12px;
-    font-weight: 800;
-    color: #ef4444;
-}
-
-.chumqr-logo {
-    font-size: 12px;
-    font-weight: 800;
-    color: var(--accent);
-    letter-spacing: 0.5px;
+    border: 4px solid var(--black);
+    box-shadow: 6px 6px 0px var(--black);
 }
 
 .qr-actions {

@@ -124,14 +124,7 @@ function generateQR(e) {
     img.crossOrigin = 'anonymous';
     img.onload = () => {
         qrCodeDiv.innerHTML = '';
-        img.style.maxWidth = '160px';
         qrCodeDiv.appendChild(img);
-
-        // Populate header info
-        document.getElementById('qrAccountName').textContent = accountName || 'CHỦ TÀI KHOẢN';
-        document.getElementById('qrAccountNo').textContent = accountNo;
-        document.getElementById('qrBankCode').textContent = currentBank.code;
-
         showToast('Tạo mã QR thành công!');
     };
 

@@ -72,34 +72,7 @@
 
             <!-- QR Result -->
             <div id="qrResult" class="qr-result" style="display:none">
-                <div class="qr-frame">
-                    <!-- Header: Account Info -->
-                    <div class="qr-header">
-                        <div class="qr-header-info">
-                            <span id="qrAccountName" class="qr-name"></span>
-                            <span id="qrAccountNo" class="qr-stk"></span>
-                        </div>
-                        <span id="qrBankCode" class="qr-bank-code"></span>
-                    </div>
-
-                    <!-- Body: Logo + QR -->
-                    <div class="qr-body">
-                        <div class="qr-logo">
-                            <span class="logo-v">V</span>
-                            <span class="logo-text">ietQR</span>
-                        </div>
-                        <div id="qrCode" class="qr-code"></div>
-                    </div>
-
-                    <!-- Footer: NAPAS + CHUM QR -->
-                    <div class="qr-footer">
-                        <div class="napas-logo">
-                            <span class="napas-name">napas</span>
-                            <span class="napas-247">247</span>
-                        </div>
-                        <div class="chumqr-logo">CHUM QR</div>
-                    </div>
-                </div>
+                <div id="qrCode" class="qr-code"></div>
                 <div class="qr-actions">
                     <button type="button" id="downloadBtn" class="btn-secondary">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
