@@ -1,29 +1,29 @@
 // ========================================
-// VietQR Clone - Glassmorphism Version
+// VietQR Clone - Using VietQR API
 // ========================================
 
-// Vietnamese Banks Data
+// Vietnamese Banks Data (matching VietQR.io bank codes)
 const BANKS = [
-    { bin: "970436", name: "Vietcombank", shortName: "VCB", logo: "https://api.vietqr.io/img/VCB.png" },
-    { bin: "970418", name: "BIDV", shortName: "BIDV", logo: "https://api.vietqr.io/img/BIDV.png" },
-    { bin: "970415", name: "VietinBank", shortName: "CTG", logo: "https://api.vietqr.io/img/ICB.png" },
-    { bin: "970405", name: "Agribank", shortName: "AGR", logo: "https://api.vietqr.io/img/VBA.png" },
-    { bin: "970407", name: "Techcombank", shortName: "TCB", logo: "https://api.vietqr.io/img/TCB.png" },
-    { bin: "970423", name: "TPBank", shortName: "TPB", logo: "https://api.vietqr.io/img/TPB.png" },
-    { bin: "970422", name: "MBBank", shortName: "MB", logo: "https://api.vietqr.io/img/MB.png" },
-    { bin: "970416", name: "ACB", shortName: "ACB", logo: "https://api.vietqr.io/img/ACB.png" },
-    { bin: "970432", name: "VPBank", shortName: "VPB", logo: "https://api.vietqr.io/img/VPB.png" },
-    { bin: "970403", name: "Sacombank", shortName: "STB", logo: "https://api.vietqr.io/img/STB.png" },
-    { bin: "970437", name: "HDBank", shortName: "HDB", logo: "https://api.vietqr.io/img/HDB.png" },
-    { bin: "970448", name: "OCB", shortName: "OCB", logo: "https://api.vietqr.io/img/OCB.png" },
-    { bin: "970426", name: "MSB", shortName: "MSB", logo: "https://api.vietqr.io/img/MSB.png" },
-    { bin: "970431", name: "Eximbank", shortName: "EIB", logo: "https://api.vietqr.io/img/EIB.png" },
-    { bin: "970443", name: "SHB", shortName: "SHB", logo: "https://api.vietqr.io/img/SHB.png" },
-    { bin: "970441", name: "VIB", shortName: "VIB", logo: "https://api.vietqr.io/img/VIB.png" },
-    { bin: "970440", name: "SeABank", shortName: "SEAB", logo: "https://api.vietqr.io/img/SEAB.png" },
-    { bin: "970449", name: "LienVietPostBank", shortName: "LPB", logo: "https://api.vietqr.io/img/LPB.png" },
-    { bin: "970424", name: "ShinhanBank", shortName: "SHBVN", logo: "https://api.vietqr.io/img/SHBVN.png" },
-    { bin: "970439", name: "PVcomBank", shortName: "PVCB", logo: "https://api.vietqr.io/img/PVCB.png" }
+    { bin: "970436", code: "VCB", name: "Vietcombank", logo: "https://api.vietqr.io/img/VCB.png" },
+    { bin: "970418", code: "BIDV", name: "BIDV", logo: "https://api.vietqr.io/img/BIDV.png" },
+    { bin: "970415", code: "ICB", name: "VietinBank", logo: "https://api.vietqr.io/img/ICB.png" },
+    { bin: "970405", code: "VBA", name: "Agribank", logo: "https://api.vietqr.io/img/VBA.png" },
+    { bin: "970407", code: "TCB", name: "Techcombank", logo: "https://api.vietqr.io/img/TCB.png" },
+    { bin: "970423", code: "TPB", name: "TPBank", logo: "https://api.vietqr.io/img/TPB.png" },
+    { bin: "970422", code: "MB", name: "MBBank", logo: "https://api.vietqr.io/img/MB.png" },
+    { bin: "970416", code: "ACB", name: "ACB", logo: "https://api.vietqr.io/img/ACB.png" },
+    { bin: "970432", code: "VPB", name: "VPBank", logo: "https://api.vietqr.io/img/VPB.png" },
+    { bin: "970403", code: "STB", name: "Sacombank", logo: "https://api.vietqr.io/img/STB.png" },
+    { bin: "970437", code: "HDB", name: "HDBank", logo: "https://api.vietqr.io/img/HDB.png" },
+    { bin: "970448", code: "OCB", name: "OCB", logo: "https://api.vietqr.io/img/OCB.png" },
+    { bin: "970426", code: "MSB", name: "MSB", logo: "https://api.vietqr.io/img/MSB.png" },
+    { bin: "970431", code: "EIB", name: "Eximbank", logo: "https://api.vietqr.io/img/EIB.png" },
+    { bin: "970443", code: "SHB", name: "SHB", logo: "https://api.vietqr.io/img/SHB.png" },
+    { bin: "970441", code: "VIB", name: "VIB", logo: "https://api.vietqr.io/img/VIB.png" },
+    { bin: "970440", code: "SEAB", name: "SeABank", logo: "https://api.vietqr.io/img/SEAB.png" },
+    { bin: "970449", code: "LPB", name: "LienVietPostBank", logo: "https://api.vietqr.io/img/LPB.png" },
+    { bin: "970424", code: "SHBVN", name: "ShinhanBank", logo: "https://api.vietqr.io/img/SHBVN.png" },
+    { bin: "970439", code: "PVCB", name: "PVcomBank", logo: "https://api.vietqr.io/img/PVCB.png" }
 ];
 
 // DOM Elements
@@ -36,8 +36,9 @@ const accountInfo = document.getElementById('accountInfo');
 const downloadBtn = document.getElementById('downloadBtn');
 const newBtn = document.getElementById('newBtn');
 
-// Current selected bank
+// State
 let currentBank = null;
+let currentQRUrl = null;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', init);
@@ -46,11 +47,10 @@ function init() {
     // Populate bank select
     BANKS.forEach(bank => {
         const option = document.createElement('option');
-        option.value = bank.bin;
-        option.textContent = `${bank.name} (${bank.shortName})`;
+        option.value = bank.code;
+        option.textContent = bank.name;
         option.dataset.logo = bank.logo;
-        option.dataset.name = bank.name;
-        option.dataset.short = bank.shortName;
+        option.dataset.bin = bank.bin;
         bankSelect.appendChild(option);
     });
 
@@ -59,10 +59,10 @@ function init() {
         const opt = e.target.selectedOptions[0];
         if (opt && opt.value) {
             currentBank = {
-                bin: opt.value,
-                name: opt.dataset.name,
-                shortName: opt.dataset.short,
-                logo: opt.dataset.logo
+                code: opt.value,
+                name: opt.textContent,
+                logo: opt.dataset.logo,
+                bin: opt.dataset.bin
             };
         } else {
             currentBank = null;
@@ -73,16 +73,16 @@ function init() {
     downloadBtn.addEventListener('click', downloadQR);
     newBtn.addEventListener('click', resetForm);
 
-    // Format amount input
+    // Format amount
     document.getElementById('amount').addEventListener('input', (e) => {
         let val = e.target.value.replace(/\D/g, '');
         if (val) e.target.value = Number(val).toLocaleString('vi-VN');
     });
 
-    console.log('VietQR App initialized');
+    console.log('VietQR App ready!');
 }
 
-// Generate QR Code
+// Generate QR using VietQR.io API (free, no CORS issues with images)
 function generateQR(e) {
     e.preventDefault();
 
@@ -98,106 +98,77 @@ function generateQR(e) {
     }
 
     const accountName = document.getElementById('accountName').value.trim().toUpperCase();
-    const amount = document.getElementById('amount').value.replace(/\D/g, '');
+    const amount = document.getElementById('amount').value.replace(/\D/g, '') || '0';
     const desc = removeVnTones(document.getElementById('description').value.trim());
 
-    // Generate EMVCo QR string
-    const qrData = buildVietQRString(currentBank.bin, accountNo, amount, desc);
-    console.log('QR Data:', qrData);
+    // Use VietQR.io image API
+    // Format: https://img.vietqr.io/image/{BANK_CODE}-{ACCOUNT_NO}-{TEMPLATE}.png?amount={AMOUNT}&addInfo={DESC}&accountName={NAME}
+    let qrUrl = `https://img.vietqr.io/image/${currentBank.code}-${accountNo}-compact2.png`;
 
-    // Check if QRCode library is loaded
-    if (typeof QRCode === 'undefined') {
-        showToast('Lỗi: Thư viện QR chưa sẵn sàng. Vui lòng refresh trang.');
-        return;
+    const params = new URLSearchParams();
+    if (amount && amount !== '0') params.append('amount', amount);
+    if (desc) params.append('addInfo', desc);
+    if (accountName) params.append('accountName', accountName);
+
+    if (params.toString()) {
+        qrUrl += '?' + params.toString();
     }
 
-    // Clear previous QR
-    qrCodeDiv.innerHTML = '';
+    currentQRUrl = qrUrl;
 
-    // Generate QR using library
-    QRCode.toCanvas(qrData, {
-        width: 180,
-        margin: 1,
-        color: { dark: '#000', light: '#fff' }
-    }, (err, canvas) => {
-        if (err) {
-            console.error('QR Error:', err);
-            showToast('Lỗi tạo mã QR');
-            return;
-        }
+    // Show loading
+    qrCodeDiv.innerHTML = '<div style="padding:40px;color:#666">Đang tạo mã QR...</div>';
+    qrForm.style.display = 'none';
+    qrResult.style.display = 'flex';
 
-        qrCodeDiv.appendChild(canvas);
+    // Create image
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+        qrCodeDiv.innerHTML = '';
+        img.style.maxWidth = '200px';
+        img.style.borderRadius = '8px';
+        qrCodeDiv.appendChild(img);
+
         bankLogo.src = currentBank.logo;
         bankLogo.alt = currentBank.name;
+        bankLogo.style.display = 'none'; // VietQR API already includes logo
 
         accountInfo.innerHTML = `
             <div class="acc-number">${accountNo}</div>
             ${accountName ? `<div class="acc-name">${accountName}</div>` : ''}
         `;
 
-        qrForm.style.display = 'none';
-        qrResult.style.display = 'flex';
         showToast('Tạo mã QR thành công!');
-    });
+    };
+
+    img.onerror = () => {
+        qrCodeDiv.innerHTML = '<div style="padding:20px;color:#ff6b6b">Lỗi tạo mã QR. Vui lòng thử lại.</div>';
+        showToast('Lỗi tạo mã QR');
+    };
+
+    img.src = qrUrl;
 }
 
-// Build VietQR EMVCo string
-function buildVietQRString(bankBin, accountNo, amount, desc) {
-    let s = '';
+// Download QR
+function downloadQR() {
+    if (!currentQRUrl) return;
 
-    // 00 - Payload Format
-    s += tlv('00', '01');
-
-    // 01 - Point of Initiation (11=static, 12=dynamic)
-    s += tlv('01', amount ? '12' : '11');
-
-    // 38 - Merchant Account Info (VietQR)
-    let merchant = '';
-    merchant += tlv('00', 'A000000727');        // NAPAS
-    merchant += tlv('01', bankBin + accountNo);  // BIN + Account
-    merchant += tlv('02', 'QRIBFTTA');           // Service
-    s += tlv('38', merchant);
-
-    // 53 - Currency (704 = VND)
-    s += tlv('53', '704');
-
-    // 54 - Amount (optional)
-    if (amount && amount !== '0') {
-        s += tlv('54', amount);
-    }
-
-    // 58 - Country
-    s += tlv('58', 'VN');
-
-    // 62 - Additional Data (optional description)
-    if (desc) {
-        s += tlv('62', tlv('08', desc.substring(0, 25)));
-    }
-
-    // 63 - CRC placeholder
-    s += '6304';
-
-    // Calculate CRC
-    const crc = crc16(s);
-    return s.slice(0, -4) + '6304' + crc;
+    // Open in new tab for download (workaround for cross-origin)
+    const link = document.createElement('a');
+    link.href = currentQRUrl;
+    link.target = '_blank';
+    link.click();
+    showToast('Đang mở hình ảnh QR');
 }
 
-// TLV helper
-function tlv(tag, value) {
-    return tag + String(value.length).padStart(2, '0') + value;
-}
-
-// CRC16-CCITT
-function crc16(str) {
-    let crc = 0xFFFF;
-    for (let i = 0; i < str.length; i++) {
-        crc ^= str.charCodeAt(i) << 8;
-        for (let j = 0; j < 8; j++) {
-            crc = crc & 0x8000 ? (crc << 1) ^ 0x1021 : crc << 1;
-        }
-        crc &= 0xFFFF;
-    }
-    return crc.toString(16).toUpperCase().padStart(4, '0');
+// Reset form
+function resetForm() {
+    qrForm.reset();
+    qrForm.style.display = 'block';
+    qrResult.style.display = 'none';
+    currentBank = null;
+    currentQRUrl = null;
 }
 
 // Remove Vietnamese tones
@@ -209,27 +180,7 @@ function removeVnTones(str) {
         .toUpperCase();
 }
 
-// Download QR
-function downloadQR() {
-    const canvas = qrCodeDiv.querySelector('canvas');
-    if (!canvas) return;
-
-    const link = document.createElement('a');
-    link.download = `VietQR_${currentBank.shortName}_${document.getElementById('accountNo').value}.png`;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-    showToast('Đã tải mã QR');
-}
-
-// Reset form
-function resetForm() {
-    qrForm.reset();
-    qrForm.style.display = 'block';
-    qrResult.style.display = 'none';
-    currentBank = null;
-}
-
-// Toast
+// Toast notification
 function showToast(msg) {
     const old = document.querySelector('.toast');
     if (old) old.remove();
