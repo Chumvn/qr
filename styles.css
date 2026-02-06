@@ -223,6 +223,42 @@ body {
     box-shadow: 6px 6px 0px var(--black);
 }
 
+/* Suggestions Chips */
+.suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.chip {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: var(--white);
+    color: var(--black);
+    border: 2px solid var(--black);
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.chip:hover {
+    background: var(--yellow);
+    transform: translate(-1px, -1px);
+    box-shadow: 2px 2px 0px var(--black);
+}
+
+.chip:active {
+    transform: translate(1px, 1px);
+    box-shadow: none;
+}
+
+.chip.selected {
+    background: var(--accent);
+    color: var(--white);
+}
+
 .qr-actions {
     display: flex;
     gap: 10px;

@@ -77,7 +77,32 @@ function init() {
         if (val) e.target.value = Number(val).toLocaleString('vi-VN');
     });
 
-    console.log('VietQR App ready!');
+    // Bank suggestion chips
+    document.querySelectorAll('#bankSuggestions .chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+            const bankCode = chip.dataset.bank;
+            bankSelect.value = bankCode;
+            bankSelect.dispatchEvent(new Event('change'));
+
+            // Update selected state
+            document.querySelectorAll('#bankSuggestions .chip').forEach(c => c.classList.remove('selected'));
+            chip.classList.add('selected');
+        });
+    });
+
+    // Description suggestion chips
+    document.querySelectorAll('#descSuggestions .chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+            const desc = chip.dataset.desc;
+            document.getElementById('description').value = desc;
+
+            // Update selected state
+            document.querySelectorAll('#descSuggestions .chip').forEach(c => c.classList.remove('selected'));
+            chip.classList.add('selected');
+        });
+    });
+
+    console.log('CHUM QR ready!');
 }
 
 // Generate QR using VietQR.io API (free, no CORS issues with images)
